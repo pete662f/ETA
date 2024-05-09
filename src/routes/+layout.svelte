@@ -3,6 +3,9 @@
     import { Icon, User } from "svelte-hero-icons";
     import { onMount } from "svelte";
 
+    import { SignIn, SignOut } from "@auth/sveltekit/components";
+    import { page } from "$app/stores";
+
     // Handles the logic to show/hide the dropdown menu
     let showDropdown: boolean = false;
 
@@ -61,9 +64,19 @@
               <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Account settings</a>
               <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Support</a>
               <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">License</a>
-              <form method="POST" action="#" role="none">
-                <button type="submit" class="text-gray-700 block w-full px-4 py-2 text-left text-sm" role="menuitem" tabindex="-1" id="menu-item-3">Sign in</button>
-              </form>
+              {#if $page.data.session}
+                <SignOut>
+                    <div slot="submitButton" class="text-red-700 block px-4 py-2 text-sm w-fit font-bold">
+                        Sign out
+                    </div>
+                </SignOut>
+              {:else}
+                <SignIn>
+                    <div slot="submitButton" class="text-gray-700 block px-4 py-2 text-sm w-fit font-bold">
+                        Sign in
+                    </div>
+                </SignIn>
+              {/if}
             </div>
         </div>
         {/if}
