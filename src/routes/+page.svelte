@@ -1,26 +1,7 @@
-<!-- Box for the primary texst -->
-<div class="bg-gray-200 rounded mx-8 py-8 my-8 shadow-md">
-    <!-- Title -->
-    <h1 class="text-3xl font-bold ml-8">Create an event</h1>
+<script lang="ts">
+    import type { PageData } from './$types';
+    
+    export let data: PageData;
+</script>
 
-    <!-- Descriptive text -->
-    <p class="ml-9 mt-1">Get started!! You can create your event here, with different types of tickets.</p>
-
-    <!-- Botton -->
-    <div class="ml-9 mt-7">
-        <button class="bg-green-100 border border-gray-300 hover:border-gray-500 shadow-md font-bold py-1 px-2 rounded">
-            Create
-        </button>
-    </div>
-</div>
-
-<!-- Info box -->
-<div class="bg-green-100 border-t-4 border-green-400 rounded text-green-900 px-4 py-3 shadow-md mt-7 mx-8">
-    <div class="flex ml-7">
-        <div>
-            <p class="font-bold">Information</p>
-            <p class="text-sm">This is an information box example created using Tailwind CSS.</p>
-        </div>
-    </div>
-</div>
-
+<p>test</p>
