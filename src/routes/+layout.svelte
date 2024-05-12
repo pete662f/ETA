@@ -38,16 +38,26 @@
                 <div class="flex justify-between items-center">
                     <!-- Logo or name of the website and links to other pages -->
                     <div class="flex space-x-4 items-center">
-                        <a href="/" class="text-white text-2xl font-bold">Event Tickets Analytics</a>
-                        <a href="/your-data/" class="text-gray-300 hover:text-white">Your Data</a>
-                        <a href="/events" class="text-gray-300 hover:text-white">Events</a>
-                        <a href="/" class="text-gray-300 hover:text-white">Economy</a>
+                        {#if $page.data.session}
+                            <a href="/{$page.data.session.user?.name}" class="text-white text-2xl font-bold">Event Tickets Analytics - {$page.data.session.user?.name}</a>
+                            <a href="/{$page.data.session.user?.name}/your-data" class="text-gray-300 hover:text-white">Your Data</a>
+                            <a href="/{$page.data.session.user?.name}/events" class="text-gray-300 hover:text-white">Events</a>
+                            <a href="/{$page.data.session.user?.name}/economy" class="text-gray-300 hover:text-white">Economy</a>
+                        {:else}
+                            <a href="/" class="text-white text-2xl font-bold">Event Tickets Analytics</a>
+                        {/if}
+
                     </div>
                     <!-- Logo for user -->
                     <div class="flex space-x-4 dropdown-button">
                         <button on:click={menu} type="button" id="menu-button" aria-haspopup="true" aria-expanded={showDropdown}>
-                            <Icon src="{User}" solid class="text-gray-300 hover:text-white w-6 h-6" />
+                            {#if $page.data.session}
+                                <img src="{$page.data.session.user?.image}" alt="User" class="w-8 h-8 rounded-full" />
+                            {:else}
+                                <Icon src="{User}" solid class="text-gray-300 hover:text-white w-8 h-8" />
                                 <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                            {/if}
+                            
                         </button>
                     </div>
                 </div>
@@ -61,10 +71,10 @@
         {#if showDropdown}
         <div class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
             <div class="py-1" role="none">
-              <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Account settings</a>
-              <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Support</a>
-              <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">License</a>
               {#if $page.data.session}
+                <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Account settings</a>
+                <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Support</a>
+                <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">License</a>
                 <SignOut>
                     <div slot="submitButton" class="text-red-700 block px-4 py-2 text-sm w-fit font-bold">
                         Sign out
