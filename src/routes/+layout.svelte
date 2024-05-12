@@ -51,8 +51,13 @@
                     <!-- Logo for user -->
                     <div class="flex space-x-4 dropdown-button">
                         <button on:click={menu} type="button" id="menu-button" aria-haspopup="true" aria-expanded={showDropdown}>
-                            <Icon src="{User}" solid class="text-gray-300 hover:text-white w-6 h-6" />
+                            {#if $page.data.session}
+                                <img src="{$page.data.session.user?.image}" alt="User" class="w-8 h-8 rounded-full" />
+                            {:else}
+                                <Icon src="{User}" solid class="text-gray-300 hover:text-white w-8 h-8" />
                                 <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                            {/if}
+                            
                         </button>
                     </div>
                 </div>
