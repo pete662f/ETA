@@ -12,9 +12,8 @@ services:
     #    target: /dev/shm
     #    tmpfs:
     #      size: 134217728 # 128*2^20 bytes = 128Mb
-    environment:
-      POSTGRES_PASSWORD: test
-      POSTGRES_DB: auth
+    env_file:
+      - .env.local
     volumes:
       - ./data/db:/var/lib/postgresql/data
     ports:
