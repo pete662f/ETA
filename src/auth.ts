@@ -30,7 +30,7 @@ export const { signIn, signOut, handle } = SvelteKitAuth({
     providers: [
         GitHub,
         Google,
-        Credentials({
+        /*Credentials({
             credentials: {
                 email: {},
                 password: {},
@@ -52,9 +52,23 @@ export const { signIn, signOut, handle } = SvelteKitAuth({
                     throw new Error("Invalid credentials");
                 }
 
-                // Return user as an json object
+                // Return user as an json object    
                 return user;
             },
-        }),
+        }),*/
     ],
+    callbacks: {
+        session({ session, user }) {
+            // Initialize 'organization' as an object if it doesn't exist
+            if (user.organization_uuid) {
+                if (!session.user.organization) {
+                    session.user.organization = {};
+                }
+                session.user.organization.uuid = user.organization_uuid;
+                session.user.organization.name = "Test Organization";
+            }
+
+            return session;
+        },
+    },
 });

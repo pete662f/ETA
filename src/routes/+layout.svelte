@@ -19,6 +19,7 @@
             showDropdown = false;
         }
     }
+    ;
 
     // Lissen for clicks outside the dropdown
     onMount(() => {
@@ -38,11 +39,11 @@
                 <div class="flex justify-between items-center">
                     <!-- Logo or name of the website and links to other pages -->
                     <div class="flex space-x-4 items-center">
-                        {#if $page.data.session}
-                            <a href="/{$page.data.session.user?.name}" class="text-white text-2xl font-bold">Event Tickets Analytics - {$page.data.session.user?.name}</a>
-                            <a href="/{$page.data.session.user?.name}/your-data" class="text-gray-300 hover:text-white">Your Data</a>
-                            <a href="/{$page.data.session.user?.name}/events" class="text-gray-300 hover:text-white">Events</a>
-                            <a href="/{$page.data.session.user?.name}/economy" class="text-gray-300 hover:text-white">Economy</a>
+                        {#if $page.data.session?.user?.organization}
+                            <a href="/dashboard" class="text-white text-2xl font-bold">Event Tickets Analytics - {$page.data.session.user?.organization.name}</a>
+                            <a href="/dashboard/your-data" class="text-gray-300 hover:text-white">Your Data</a>
+                            <a href="/dashboard/events" class="text-gray-300 hover:text-white">Events</a>
+                            <a href="/dashboard/economy" class="text-gray-300 hover:text-white">Economy</a>
                         {:else}
                             <a href="/" class="text-white text-2xl font-bold">Event Tickets Analytics</a>
                         {/if}
