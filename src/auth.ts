@@ -6,21 +6,9 @@ import GitHub from "@auth/sveltekit/providers/github";
 import Google from "@auth/sveltekit/providers/google";
 
 import PostgresAdapter from "@auth/pg-adapter";
-import pkg from 'pg';
-const {Pool} = pkg;
 
 import { saltAndHashPassword } from "./password";
-import { getUserFromDb, createUserInDb } from "./db";
-
-const pool = new Pool({
-    host: process.env.POSTGRES_HOST,
-    user: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    database: process.env.POSTGRES_DB,
-    max: 20,
-    idleTimeoutMillis: 30000,
-    connectionTimeoutMillis: 2000,
-});     
+import { getUserFromDb, createUserInDb, pool, createOrganization, getOrganizationByName, getOrganizationById } from "./db";
 
 // sign In
 export const { signIn, signOut, handle } = SvelteKitAuth({ 
@@ -64,7 +52,7 @@ export const { signIn, signOut, handle } = SvelteKitAuth({
                 if (!session.user.organization) {
                     session.user.organization = {};
                 }
-                session.user.organization.uuid = user.organization_uuid;
+                session.user.organization.id = user.organization_id;
                 session.user.organization.name = "Test Organization";
             }
 

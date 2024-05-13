@@ -26,7 +26,7 @@ npm run dev -- --open
 ```
 
 ## DB setup
-Login to adminer and click SQL command first run `CREATE EXTENSION IF NOT EXISTS "uuid-ossp";` then:
+Login to adminer and click SQL command and run:
 ```SQL
 CREATE TABLE verification_token
 (
@@ -72,15 +72,16 @@ CREATE TABLE users
   email VARCHAR(255),
   "emailVerified" TIMESTAMPTZ,
   image TEXT,
-  organization_uuid UUID,
+  organizationId INTEGER,
 
-  FOREIGN KEY (organization_uuid) REFERENCES organizations(uuid),
+  FOREIGN KEY (organizationId) REFERENCES organizations(id),
   PRIMARY KEY (id)
 );
 
 CREATE TABLE organizations (
-    uuid UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    name VARCHAR(255) NOT NULL
+    id SERIAL,
+    name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
 );
  ```
 
