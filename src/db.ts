@@ -12,7 +12,8 @@ export const pool = new Pool({
 });     
 
 export const createOrganization = async (name: string) => {
-    const result = pool.query('INSERT INTO organizations (name) VALUES ($1)', [name]);
+    const result = await pool.query('INSERT INTO organizations (name) VALUES ($1)', [name]);
+    return result.rows[0];
 }
 
 export const getOrganizationById = async (id: string) => {
@@ -26,7 +27,7 @@ export const getOrganizationByName = async (name: string) => {
 }
 
 export const linkUserToOrganization = async (userId: string, organizationId: string) => {
-    const result = await pool.query('UPDATE users SET organization_id = $1 WHERE id = $2', [organizationId, userId]);
+    const result = await pool.query('UPDATE users SET "organizationId" = $1 WHERE id = $2', [organizationId, userId]);
 }
 
 // This is dummy functions

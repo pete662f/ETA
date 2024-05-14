@@ -10,7 +10,7 @@ export const load: LayoutServerLoad = async ( event ) => {
     }
  
     // If not in organization, redirect to create organization page
-    if (!session.user?.organization) {
+    if (!session.user?.organizationId) {
         throw redirect(303,'/create-organization');
     }
 

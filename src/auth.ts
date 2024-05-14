@@ -45,17 +45,10 @@ export const { signIn, signOut, handle } = SvelteKitAuth({
             },
         }),*/
     ],
+
+    // Shoud be done automatically by the adapter but it's not working without it
     callbacks: {
         session({ session, user }) {
-            // Initialize 'organization' as an object if it doesn't exist
-            if (user.organization_uuid) {
-                if (!session.user.organization) {
-                    session.user.organization = {};
-                }
-                session.user.organization.id = user.organization_id;
-                session.user.organization.name = "Test Organization";
-            }
-
             return session;
         },
     },

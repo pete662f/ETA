@@ -64,6 +64,12 @@ CREATE TABLE sessions
  
   PRIMARY KEY (id)
 );
+
+CREATE TABLE organizations (
+    id SERIAL,
+    name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
  
 CREATE TABLE users
 (
@@ -72,16 +78,10 @@ CREATE TABLE users
   email VARCHAR(255),
   "emailVerified" TIMESTAMPTZ,
   image TEXT,
-  organizationId INTEGER,
+  "organizationId" INTEGER,
 
-  FOREIGN KEY (organizationId) REFERENCES organizations(id),
+  FOREIGN KEY ("organizationId") REFERENCES organizations(id),
   PRIMARY KEY (id)
-);
-
-CREATE TABLE organizations (
-    id SERIAL,
-    name VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id)
 );
  ```
 

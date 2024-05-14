@@ -39,8 +39,8 @@
                 <div class="flex justify-between items-center">
                     <!-- Logo or name of the website and links to other pages -->
                     <div class="flex space-x-4 items-center">
-                        {#if $page.data.session?.user?.organization}
-                            <a href="/dashboard" class="text-white text-2xl font-bold">Event Tickets Analytics - {$page.data.session.user?.organization.name}</a>
+                        {#if $page.data.session?.user?.organizationId}
+                            <a href="/dashboard" class="text-white text-2xl font-bold">Event Tickets Analytics - {$page.data.session.user?.name}</a>
                             <a href="/dashboard/your-data" class="text-gray-300 hover:text-white">Your Data</a>
                             <a href="/dashboard/events" class="text-gray-300 hover:text-white">Events</a>
                             <a href="/dashboard/economy" class="text-gray-300 hover:text-white">Economy</a>
