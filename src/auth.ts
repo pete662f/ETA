@@ -6,21 +6,9 @@ import GitHub from "@auth/sveltekit/providers/github";
 import Google from "@auth/sveltekit/providers/google";
 
 import PostgresAdapter from "@auth/pg-adapter";
-import pkg from 'pg';
-const {Pool} = pkg;
 
 import { saltAndHashPassword } from "./password";
-import { getUserFromDb, createUserInDb } from "./db";
-
-const pool = new Pool({
-    host: process.env.DATABASE_HOST,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE_NAME,
-    max: 20,
-    idleTimeoutMillis: 30000,
-    connectionTimeoutMillis: 2000,
-});     
+import { getUserFromDb, createUserInDb, pool, createOrganization, getOrganizationByName, getOrganizationById } from "./db";
 
 // sign In
 export const { signIn, signOut, handle } = SvelteKitAuth({ 
@@ -30,7 +18,7 @@ export const { signIn, signOut, handle } = SvelteKitAuth({
     providers: [
         GitHub,
         Google,
-        Credentials({
+        /*Credentials({
             credentials: {
                 email: {},
                 password: {},
@@ -52,9 +40,16 @@ export const { signIn, signOut, handle } = SvelteKitAuth({
                     throw new Error("Invalid credentials");
                 }
 
-                // Return user as an json object
+                // Return user as an json object    
                 return user;
             },
-        }),
+        }),*/
     ],
+
+    // Shoud be done automatically by the adapter but it's not working without it
+    callbacks: {
+        session({ session, user }) {
+            return session;
+        },
+    },
 });
