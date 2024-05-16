@@ -83,6 +83,32 @@ CREATE TABLE users
   FOREIGN KEY ("organizationId") REFERENCES organizations(id),
   PRIMARY KEY (id)
 );
+
+CREATE TABLE events
+(
+  id SERIAL,
+  name VARCHAR(255) NOT NULL,
+  location varchar(255) NOT NULL,
+  "availableTickets" INTEGER NOT NULL,
+  date TIMESTAMPTZ NOT NULL,
+  "organizationId" INTEGER NOT NULL,
+
+  FOREIGN KEY ("organizationId") REFERENCES organizations(id),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE tickets
+(
+  id SERIAL,
+  "type" VARCHAR(255) NOT NULL,
+  "time" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "eventId" INTEGER NOT NULL,
+  "userId" INTEGER NOT NULL,
+
+  FOREIGN KEY ("userId") REFERENCES users(id),
+  FOREIGN KEY ("eventId") REFERENCES events(id),
+  PRIMARY KEY (id)
+);
  ```
 
 ## Building

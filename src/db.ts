@@ -1,4 +1,5 @@
 import pkg from 'pg';
+import { get } from 'svelte/store';
 const {Pool} = pkg;
 
 export const pool = new Pool({
@@ -11,6 +12,8 @@ export const pool = new Pool({
     connectionTimeoutMillis: 2000,
 });     
 
+
+// Organization functions
 export const createOrganization = async (name: string) => {
     const result = await pool.query('INSERT INTO organizations (name) VALUES ($1)', [name]);
     return result.rows[0];
@@ -29,6 +32,18 @@ export const getOrganizationByName = async (name: string) => {
 export const linkUserToOrganization = async (userId: string, organizationId: string) => {
     const result = await pool.query('UPDATE users SET "organizationId" = $1 WHERE id = $2', [organizationId, userId]);
 }
+
+// Event functions
+export const createEvent = async (name: string, location: string, availableTickets: number, date: string, organizationId: string) => {
+    const result = await pool.query('INSERT INTO events (name, location, "availableTickets", date, "organizationId") VALUES ($1, $2, $3, $4, $5)', [name, location, availableTickets, date, organizationId]);
+    return result.rows[0];
+}
+
+export const getEventNameInOrganization = async (name: string, organizationId: string) => {
+    const result = await pool.query('SELECT * FROM events WHERE name = $1 AND "organizationId" = $2', [name, organizationId]);
+    return result.rows[0];
+}
+
 
 // This is dummy functions
 

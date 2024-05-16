@@ -25,8 +25,6 @@ export const actions: Actions = {
         const data = await request.formData();
         const name = data.get('name');
 
-        console.log(name);
-
         // Check if organization already exists
         if (await getOrganizationByName(name as string)) {
             return { error: "Organization already exists" };
