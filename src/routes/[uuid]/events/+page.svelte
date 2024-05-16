@@ -23,9 +23,10 @@
     <!-- Title and buttons to make options -->
     <div class="flex">
       <h1 class="text-3xl font-bold">Events</h1>
-      <button on:click={current} class="border border-gray-300 bg-green-100 hover:border-gray-500 rounded shadow-md font-bold px-2">Current</button>
-      <button on:click={held} class="border border-gray-300 bg-green-100 hover:border-gray-500 rounded shadow-md font-bold px-2">Held</button>
-      
+      <div class="ml-8">
+        <button on:click={current} class="border border-gray-300 bg-green-100 hover:border-gray-500 rounded shadow-md font-bold px-2">Current</button>
+        <button on:click={held} class="border border-gray-300 bg-green-100 hover:border-gray-500 rounded shadow-md font-bold px-2">Held</button>
+      </div>
     </div>
     
     <!-- Descriptive text -->
