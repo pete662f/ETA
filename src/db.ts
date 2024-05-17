@@ -39,6 +39,11 @@ export const createEvent = async (name: string, location: string, availableTicke
     return result.rows[0];
 }
 
+export const getEventById = async (id: string) => {
+    const result = await pool.query('SELECT * FROM events WHERE id = $1', [id]);
+    return result.rows[0];
+}
+
 export const getEventNameInOrganization = async (name: string, organizationId: string) => {
     const result = await pool.query('SELECT * FROM events WHERE name = $1 AND "organizationId" = $2', [name, organizationId]);
     return result.rows[0];
