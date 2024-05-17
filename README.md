@@ -6,7 +6,7 @@
 4. Docker-compose
 
 ## Running the project
-1. Clone the repository
+1. Clone the repository with: `git clone https://github.com/pete662f/ETA.git`
 2. Navigate to the project directory
 3. Run `npm install`
 4. Add a `.env.local` file in the root of the project with the following content (replace the placeholders with the actual values):
