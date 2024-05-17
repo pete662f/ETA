@@ -10,12 +10,14 @@ export const actions: Actions = {
             throw redirect(303,'/');
         }
 
+        // Get form data
         const data = await request.formData();
         const name = data.get('name');
         const location = data.get('location');
         const availableTickets = data.get('availableTickets');
         const date = data.get('date');
 
+        // Parse availableTickets to number
         const availableTicketsNumber = parseInt(availableTickets as string);
 
         // Check if event already exists
@@ -25,5 +27,7 @@ export const actions: Actions = {
 
         // Create event
         await createEvent(name as string, location as string, availableTicketsNumber as number, date as string, session.user.organizationId as string);
+
+        throw redirect(303,'/dashboard/events');
     }
 }

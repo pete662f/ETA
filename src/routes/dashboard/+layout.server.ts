@@ -14,7 +14,5 @@ export const load: LayoutServerLoad = async ( event ) => {
         throw redirect(303,'/create-organization');
     }
 
-    return {
-        session,
-    }
+    return { session};
 };

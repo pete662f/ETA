@@ -9,6 +9,7 @@
     // Handles the logic to show/hide the dropdown menu
     let showDropdown: boolean = false;
 
+    // Function to show/hide the dropdown menu
     function menu(): void {
         showDropdown = !showDropdown;
     }

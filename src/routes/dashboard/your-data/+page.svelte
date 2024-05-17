@@ -20,11 +20,11 @@
   
   <!-- Dropdown select menu -->
   <div class="relative inline-block text-left mt-6">
-    <select bind:value={selected} class="block appearance-none w-full bg-green-100 border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow-md leading-tight focus:outline-none focus:bg-green-100 focus:border-gray-500">
+    <select class="block appearance-none w-full bg-green-100 border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow-md leading-tight focus:outline-none focus:bg-green-100 focus:border-gray-500">
       <option value="0">Select event</option>
-      <option value="1">Rave</option>
-      <option value="2">Prom</option>
-      <option value="3">Intro</option>
+      {#each data.events as event}
+        <option value={event.id}>{event.name}</option>
+      {/each}
     </select>
     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
       <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
