@@ -1,5 +1,5 @@
 // Peter
-¨import pkg from 'pg';
+import pkg from 'pg';
 import { get } from 'svelte/store';
 const {Pool} = pkg;
 
