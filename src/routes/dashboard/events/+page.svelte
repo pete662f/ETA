@@ -1,5 +1,8 @@
 <script lang="ts">
   import type { PageData } from '../events/$types';
+  import { qr } from '@svelte-put/qr/svg';
+
+  import { page } from '$app/stores';
   
   export let data: PageData;
 
@@ -69,6 +72,10 @@ function viewEvent(event: string){
               <td class="pl-3">{eventData.location}</td>
             </tr>
             <tr>
+              <td class="pl-3">Available tickets</td>
+              <td class="pl-3">{eventData.availableTickets}</td>
+            </tr>
+            <tr>
               <td class="pl-3">Date</td>
               <td class="pl-3">{eventData.date}</td>
             </tr>
@@ -78,7 +85,14 @@ function viewEvent(event: string){
   </div>
 
   <div>
-    Get QR
+    <h3>QR code to event</h3>
+    <svg class="h-40 w-40"
+      use:qr={{
+        // The data to be encoded in the QR code
+        data: "localhost:5173" + "/event/" + $page.data.organization.name + "/" + eventData.name,
+        logo: "/favicon.png",
+      }}
+    />
   </div>
 {/if}
 

@@ -8,7 +8,8 @@ import Google from "@auth/sveltekit/providers/google";
 import PostgresAdapter from "@auth/pg-adapter";
 
 import { saltAndHashPassword } from "./password";
-import { getUserFromDb, createUserInDb, pool, createOrganization, getOrganizationByName, getOrganizationById } from "./db";
+import { getUserFromDb, createUserInDb, pool, createOrganization, getOrganizationByName, getOrganizationById, getOrganizationByIdNoAsync } from "./db";
+import { promise } from "zod";
 
 // sign In
 export const { signIn, signOut, handle } = SvelteKitAuth({ 

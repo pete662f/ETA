@@ -52,6 +52,7 @@ CREATE TABLE accounts
   session_state TEXT,
   token_type TEXT,
  
+  FOREIGN KEY ("userId") REFERENCES users(id),
   PRIMARY KEY (id)
 );
  
@@ -62,13 +63,14 @@ CREATE TABLE sessions
   expires TIMESTAMPTZ NOT NULL,
   "sessionToken" VARCHAR(255) NOT NULL,
  
+  FOREIGN KEY ("userId") REFERENCES users(id),
   PRIMARY KEY (id)
 );
 
 CREATE TABLE organizations (
-    id SERIAL,
-    name VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id)
+  id SERIAL,
+  name VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id)
 );
  
 CREATE TABLE users
