@@ -2,12 +2,15 @@
     import { page } from "$app/stores";
     import { SignIn, SignOut } from "@auth/sveltekit/components";
 
+    function ticketBuy() {
+        alert("Ticket bought")
+    }
 </script>
 
 {#if $page.data.session?.user}
 <div class="container mx-auto">
     <h1>Create Organization</h1>
-    <form method="post">
+    <form  method="post">
         <div>
             <label for="ticketType">Ticket type</label>
             <select name="ticketType">
@@ -16,9 +19,10 @@
                 <option value="lastMinute">Last minute</option>
             </select>
         </div>
-        <button class="bg-blue-400" type="submit">Buy ticket</button>
+        <button on:click={ticketBuy} class="bg-blue-400" type="submit">Buy ticket</button>
     </form>
 </div>
+
 {:else}
     <h1>Not logged in</h1>
     <SignIn>

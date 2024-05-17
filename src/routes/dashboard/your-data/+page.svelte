@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { PageData } from './$types';
-  import { Icon} from "svelte-hero-icons";
+  import { Icon } from "svelte-hero-icons";
+  import { onMount } from "svelte";
   
   export let data: PageData;
 
@@ -20,8 +21,9 @@
   
   <!-- Dropdown select menu -->
   <div class="relative inline-block text-left mt-6">
-    <select class="block appearance-none w-full bg-green-100 border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow-md leading-tight focus:outline-none focus:bg-green-100 focus:border-gray-500">
+    <select bind:value={selected} class="block appearance-none w-full bg-green-100 border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow-md leading-tight focus:outline-none focus:bg-green-100 focus:border-gray-500">
       <option value="0">Select event</option>
+      <option value="-1">Test event</option>
       {#each data.events as event}
         <option value={event.id}>{event.name}</option>
       {/each}
@@ -34,7 +36,7 @@
   </div>
   
   <!-- When selected a value, the page changes -->
-  {#if (selected === "1")}
+  {#if (selected == "-1")}
   <!-- Table for event data -->
   <div>
     <div class="my-8 shadow-md">
@@ -95,75 +97,7 @@
     </div>
   </div>
   {/if}
-  
-  {#if (selected === "2")}
-  <!-- Table for event data -->
-  <div>
-    <div class="my-8 shadow-md">
-      <table class="w-full border-collapse border border-gray-200">
-        <!-- The upper part of the table -->
-        <thead class="bg-green-400">
-          <tr>
-            <th class="border border-gray-200 text-left">User</th>
-            <th class="border border-gray-200 text-left">Ticket Type</th>
-            <th class="border border-gray-200 text-left">Gender</th>
-            <th class="border border-gray-200 text-left">Arrival</th>
-            <th class="border border-gray-200 text-left">Drinks Purchased</th>
-            <th class="border border-gray-200 text-left">Wardrobe Visit</th>
-            <th class="border border-gray-200 text-left">Approximately Departure</th>
-          </tr>
-        </thead>
-        <!-- The indside of the table -->
-        <tbody class="bg-green-100">
-          <tr>
-            <td class="border border-gray-200"></td>
-            <td class="border border-gray-200">?</td>
-            <td class="border border-gray-200"></td>
-            <td class="border border-gray-200"></td>
-            <td class="border border-gray-200"></td>
-            <td class="border border-gray-200"></td>
-            <td class="border border-gray-200"></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  {/if}
-  
-  {#if (selected === "3")}
-  <!-- Table for event data -->
-  <div>
-    <div class="my-8 shadow-md">
-      <table class="w-full border-collapse border border-gray-200">
-        <!-- The upper part of the table -->
-        <thead class="bg-green-400">
-          <tr>
-            <th class="border border-gray-200 text-left">User</th>
-            <th class="border border-gray-200 text-left">Ticket Type</th>
-            <th class="border border-gray-200 text-left">Gender</th>
-            <th class="border border-gray-200 text-left">Arrival</th>
-            <th class="border border-gray-200 text-left">Drinks Purchased</th>
-            <th class="border border-gray-200 text-left">Wardrobe Visit</th>
-            <th class="border border-gray-200 text-left">Approximately Departure</th>
-          </tr>
-        </thead>
-        <!-- The indside of the table -->
-        <tbody class="bg-green-100">
-          <tr>
-            <td class="border border-gray-200"></td>
-            <td class="border border-gray-200"></td>
-            <td class="border border-gray-200">?</td>
-            <td class="border border-gray-200"></td>
-            <td class="border border-gray-200"></td>
-            <td class="border border-gray-200"></td>
-            <td class="border border-gray-200"></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  {/if}
-  
+
 </div>
 </div>
 

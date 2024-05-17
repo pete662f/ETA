@@ -60,6 +60,10 @@ export const createTicket = async (type: string, eventId: string, userId: string
     return result.rows[0];
 }
 
+export const getTicketFromEvent = async (eventId: string) => {
+    const result = await pool.query('SELECT * FROM tickets WHERE "eventId" = $1', [eventId]);
+    return result.rows;
+}
 
 // This is dummy functions
 

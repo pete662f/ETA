@@ -1,5 +1,5 @@
-import type { PageServerLoad } from './$types';
-import { getEventsInOrganization } from '../../../db';
+import type { PageServerLoad, Actions } from './$types';
+import { getEventsInOrganization, getTicketFromEvent } from '../../../db';
 import { redirect } from '@sveltejs/kit';
 
 export const load = (async ( event ) => {
@@ -14,3 +14,9 @@ export const load = (async ( event ) => {
 
     return {events};
 }) satisfies PageServerLoad;
+
+export const actions: Actions = {
+    event: async ( { request, params, locals } ) => {
+        console.log("pp");
+    }
+};
