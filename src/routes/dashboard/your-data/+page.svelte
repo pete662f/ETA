@@ -1,3 +1,4 @@
+<!-- Julie -->
 <script lang="ts">
   import type { PageData } from './$types';
   import { Icon } from "svelte-hero-icons";

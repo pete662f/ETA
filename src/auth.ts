@@ -1,3 +1,4 @@
+// Peter
 import { SvelteKitAuth, type User } from "@auth/sveltekit";
 import Credentials from "@auth/sveltekit/providers/credentials";
 import { signInSchema, createUserSchema } from "$lib/zid";

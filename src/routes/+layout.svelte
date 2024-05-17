@@ -1,3 +1,4 @@
+<!-- Peter -->
 <script lang="ts">
     import "../app.css";
     import { Icon, User } from "svelte-hero-icons";
@@ -30,6 +31,7 @@
         };
     });
 </script>
+<!-- Julie -->
 <div class="flex flex-col h-screen justify-between">
 
     <!-- Navigation section -->

@@ -1,3 +1,4 @@
+<!-- Peter -->
 <script lang="ts">
   import type { PageData } from '../events/$types';
   import { qr } from '@svelte-put/qr/svg';
@@ -24,7 +25,7 @@ function viewEvent(event: string){
 
 }
 </script>
-
+<!-- Julie -->
 <!-- Box around the text -->
 <div class="bg-gray-200 rounded mx-8 py-6 my-8 shadow-md">
 <div class="mx-8">

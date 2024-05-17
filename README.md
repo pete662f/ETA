@@ -9,13 +9,32 @@
 1. Clone the repository
 2. Navigate to the project directory
 3. Run `npm install`
+4. Add a `.env.local` file in the root of the project with the following content (replace the placeholders with the actual values):
+```
+# AuthJS secret
+AUTH_SECRET=< Generate with: openssl rand -base64 32 >
+
+# Github Oauth 2.0
+AUTH_GITHUB_ID=< Find on Github >
+AUTH_GITHUB_SECRET=< Find on Github >
+
+# Google Oauth 2.0
+AUTH_GOOGLE_ID=< Find on Google console >
+AUTH_GOOGLE_SECRET=< Find on Google console >
+
+# Postgres
+POSTGRES_HOST=localhost
+POSTGRES_DB=auth
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=< Password >
+```
 4. Run `npm run dev`
 5. Setup the database as described below 
 6. The server should be running on `localhost:5173`
 
 ## DB setup
 1. Run `docker-compose up -d` to start the database
-2. Login to adminer at `localhost:8080` and click SQL command and run:
+2. Login to adminer at `localhost:8080` and click SQL command and run (DB by Signe):
 ```SQL
 CREATE TABLE verification_token
 (

@@ -1,3 +1,4 @@
+// Peter
 import type { PageServerLoad, Actions } from './$types';
 import { error, redirect } from '@sveltejs/kit';
 import { getOrganizationByName, getEventNameInOrganization, createTicket } from "../../../../db";
