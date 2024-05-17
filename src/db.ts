@@ -39,8 +39,19 @@ export const createEvent = async (name: string, location: string, availableTicke
     return result.rows[0];
 }
 
+export const getEventById = async (id: string) => {
+    const result = await pool.query('SELECT * FROM events WHERE id = $1', [id]);
+    return result.rows[0];
+}
+
 export const getEventNameInOrganization = async (name: string, organizationId: string) => {
     const result = await pool.query('SELECT * FROM events WHERE name = $1 AND "organizationId" = $2', [name, organizationId]);
+    return result.rows[0];
+}
+
+// Ticket functions
+export const createTicket = async (type: string, eventId: string, userId: string) => {
+    const result = await pool.query('INSERT INTO tickets (type, "eventId", "userId") VALUES ($1, $2, $3)', [type, eventId, userId]);
     return result.rows[0];
 }
 

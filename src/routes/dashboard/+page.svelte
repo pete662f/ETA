@@ -9,9 +9,9 @@
         
         <!-- Botton -->
         <div class="mt-7">
-            <button class="bg-green-100 border border-gray-300 hover:border-gray-500 shadow-md font-bold py-1 px-2 rounded">
+            <a href="/dashboard/create-event" class="bg-green-100 border border-gray-300 hover:border-gray-500 shadow-md font-bold py-2 px-2 rounded">
                 Create
-            </button>
+            </a>
         </div>
     </div>
 </div>
